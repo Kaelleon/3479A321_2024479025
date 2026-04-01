@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget
     return MaterialApp
     (
       title: 'Buscamina',
-      theme: ThemeData(primarySwatch: Colors.blue),
+      theme: ThemeData(primarySwatch: Colors.red),
       home: const MinesweeperScreen(),
     );
   }
@@ -41,12 +41,57 @@ class MinesweeperScreen extends StatelessWidget
             Container
             (
               height: 60,
-              color: Colors.grey[300],
-              child: const Center
+              color: const Color.fromARGB(255, 131, 96, 237),
+              child: Row
               (
-                child: Text('STATUS: 349 segundos | Minas: 10 | Cuadros: 56',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children:
+                [ 
+                  Row
+                  (
+                    children: 
+                    [
+                      Icon(Icons.timer),
+                      SizedBox(width: 5),
+                      Text('349s',
+                      style: TextStyle
+                      (
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),),
+                    ],
+                  ),
+                  Row
+                  (
+                    children: 
+                    [
+                      Icon(Icons.warning),
+                      SizedBox(width: 5),
+                      Text('10',
+                      style: TextStyle
+                      (
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),),
+                    ],
+                  ),
+                  Row
+                  (
+                    children: 
+                    [
+                      Icon(Icons.grid_on),
+                      SizedBox(width: 5),
+                      Text('56',
+                      style: TextStyle
+                      (
+                       fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),),
+                    ],
+                  ),
+                ]
               ),
+              
             ),
               const Divider(height: 1),
               // Área de Juego
@@ -83,17 +128,33 @@ class MinesweeperScreen extends StatelessWidget
             itemCount: 64, // 8x8 = 64 celdas
             itemBuilder: (context, index) 
             {
-              return Container
-              (
-                decoration: BoxDecoration
-                (
-                  color: Colors.grey[400],
-                  border: Border.all(color: Colors.grey[600]!, width: 1.5),
-                ),
-              );
+              return MineCell(index: index);
             },
           ),
         ),
+      ),
+    );
+  }
+}
+
+class MineCell extends StatelessWidget 
+{
+  final int index;
+  const MineCell
+  ({
+    Key? key,
+    required this.index, // Parámetro obligatorio en el constructor
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) 
+  {
+    return Container
+    (
+      decoration: BoxDecoration
+      (
+        color: const Color.fromARGB(255, 118, 190, 249),
+        border: Border.all(color: Colors.black, width: 1.5),
       ),
     );
   }
