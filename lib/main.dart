@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-void main() {
+void main() 
+{
   runApp(const MyApp());
 }
 
@@ -10,43 +11,52 @@ class MyApp extends StatelessWidget
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+  Widget build(BuildContext context) 
+  {
+    return MaterialApp
+    (
       title: 'Buscamina',
       theme: ThemeData(primarySwatch: Colors.blue),
       home: const MinesweeperScreen(),
     );
   }
 }
+
 class MinesweeperScreen extends StatelessWidget 
 {
     const MinesweeperScreen({Key? key}) : super(key: key);
     @override
   Widget build(BuildContext context) 
   {
-    return Scaffold(
-    appBar: AppBar(title: const Text('Buscaminas')),
-    body: SafeArea( // Protege la UI de los bordes del dispositivo
-    child: Column( // Apila el marcador arriba y el tablero abajo
-    children: [
-    // Área de Status
-    Container(
-    height: 60,
-    color: Colors.grey[300],
-    child: const Center(
-    child: Text('STATUS: 349 segundos | Minas: 10 | Cuadros: 56',
-    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-    ),
-    ),
-    ),
-    const Divider(height: 1),
-    // Área de Juego
-    Expanded( // Expande el tablero para llenar la pantalla
-    child: _gameBoard(),
-    ),
-    ],
-    ),
-    ),
+    return Scaffold
+    (
+      appBar: AppBar(title: const Text('Buscaminas')),
+      body: SafeArea
+      ( // Protege la UI de los bordes del dispositivo
+        child: Column
+        ( // Apila el marcador arriba y el tablero abajo
+          children: 
+          [
+            // Área de Status
+            Container
+            (
+              height: 60,
+              color: Colors.grey[300],
+              child: const Center
+              (
+                child: Text('STATUS: 349 segundos | Minas: 10 | Cuadros: 56',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
+              ),
+            ),
+              const Divider(height: 1),
+              // Área de Juego
+              Expanded
+            ( // Expande el tablero para llenar la pantalla
+              child: _gameBoard(),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
