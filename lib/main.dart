@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
+var logger = Logger();
 
 void main() 
 {
+  logger.d('Iniciando la aplicación de Buscaminas'); // Debug
+  logger.i('Iniciando la aplicación de Buscaminas'); // Info
+  logger.w('Iniciando la aplicación de Buscaminas'); // Warning
+  logger.e('Iniciando la aplicación de Buscaminas'); // Error
   runApp(const MyApp());
 }
 
