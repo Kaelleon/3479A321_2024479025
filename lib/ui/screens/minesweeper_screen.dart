@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/ui/widgets/mine_cell.dart';
+import 'package:flutter_application_1/ui/screens/about.dart';
 
 class MinesweeperScreen extends StatelessWidget 
 {
@@ -9,7 +10,21 @@ class MinesweeperScreen extends StatelessWidget
   {
     return Scaffold
     (
-      appBar: AppBar(title: const Text('Buscaminas')),
+      appBar: AppBar(title: const Text('Buscaminas'),
+      actions: 
+      [
+        IconButton
+        (
+          icon: const Icon(Icons.person_outline),
+          onPressed: () 
+          {
+          // Aquí podrías navegar a una pantalla de "Acerca de"
+          Navigator.push(context, MaterialPageRoute(builder: (_) => const AboutScreen()));
+          },
+        ),
+      ]
+      ),
+
       body: SafeArea
       ( // Protege la UI de los bordes del dispositivo
         child: Column

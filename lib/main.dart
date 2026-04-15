@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget
         (
           seedColor: const Color.fromARGB(255, 0, 255, 251),
           primary: const Color.fromARGB(255, 0, 17, 255),
-          secondary: const Color.fromARGB(255, 255, 0, 0)
+          secondary: const Color.fromARGB(255, 122, 142, 255)
         ),
         scaffoldBackgroundColor: const Color.fromARGB(255, 249, 255, 221), // Fondo pordefecto de todas las pantallas
         textTheme: const TextTheme
