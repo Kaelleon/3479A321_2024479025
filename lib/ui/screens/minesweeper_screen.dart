@@ -30,8 +30,7 @@ class MinesweeperScreen extends StatelessWidget
                   (
                     children: 
                     [
-                      Icon(Icons.timer),
-                      SizedBox(width: 5),
+                      Image.asset('assets/images/Tiempo.png'),
                       Text('349s',
                       style: TextStyle
                       (
@@ -44,8 +43,7 @@ class MinesweeperScreen extends StatelessWidget
                   (
                     children: 
                     [
-                      Icon(Icons.warning),
-                      SizedBox(width: 5),
+                      Image.asset('assets/images/Bomba.png'),
                       Text('10',
                       style: TextStyle
                       (
@@ -58,8 +56,7 @@ class MinesweeperScreen extends StatelessWidget
                   (
                     children: 
                     [
-                      Icon(Icons.grid_on),
-                      SizedBox(width: 5),
+                      Image.asset('assets/images/Bandera.png'),
                       Text('56',
                       style: TextStyle
                       (

@@ -23,8 +23,22 @@ class MyApp extends StatelessWidget
     return MaterialApp
     (
       title: 'Buscamina',
-      theme: ThemeData(primarySwatch: Colors.red),
-      home: const MinesweeperScreen(),
+      theme: ThemeData
+      (
+        colorScheme: ColorScheme.fromSeed
+        (
+          seedColor: const Color.fromARGB(255, 0, 255, 251),
+          primary: const Color.fromARGB(255, 0, 17, 255),
+          secondary: const Color.fromARGB(255, 255, 0, 0)
+        ),
+        scaffoldBackgroundColor: const Color.fromARGB(255, 249, 255, 221), // Fondo pordefecto de todas las pantallas
+        textTheme: const TextTheme
+        (
+          bodyMedium: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500),
+        ),
+        useMaterial3: true,
+      ),
+      home: const MinesweeperScreen(), // Apuntamos a nuestra nueva pantalla
     );
   }
 }
