@@ -9,9 +9,31 @@ class MenuScreen extends StatelessWidget
     return Scaffold
     (
       appBar: AppBar(title: const Text('Menu (Maqueta)')),
-      body: const Center
+      body: Center
       (
-        child: Text('Aquí ira el menu'),
+        child: Column
+        (
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: 
+          [
+            const Text('Buscamina'),
+            ElevatedButton
+            (
+              onPressed: () => Navigator.pushNamed(context, '/game'),
+              child: const Text('Jugar'),
+            ),
+            ElevatedButton
+            (
+              onPressed: () => Navigator.pushNamed(context, '/history'),
+              child: const Text('Historial'),
+            ),
+            ElevatedButton
+            (
+              onPressed: () => Navigator.pushNamed(context, '/about'),
+              child: const Text('Acera de'),
+            ),
+          ],
+        )
       ),
     );
   }

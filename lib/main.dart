@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/ui/screens/minesweeper_screen.dart';
+import 'package:flutter_application_1/ui/screens/menu_screen.dart';
+import 'package:flutter_application_1/ui/screens/history_screen.dart';
+import 'package:flutter_application_1/ui/screens/about.dart';
 import 'package:logger/logger.dart';
 var logger = Logger();
 
@@ -22,6 +25,16 @@ class MyApp extends StatelessWidget
   {
     return MaterialApp
     (
+      initialRoute: '/menu',
+      // Mapa centralizado de Rutas Nombradas
+      routes: 
+      {
+        '/menu': (context) => const MenuScreen(),
+        '/game': (context) => const MinesweeperScreen(),
+        '/history': (context) => const HistoryScreen(),
+        '/about': (context) => const AboutScreen(),
+      },
+
       title: 'Buscamina',
       theme: ThemeData
       (
