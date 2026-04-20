@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/ui/screens/history_screen.dart';
-import 'package:flutter_application_1/ui/screens/menu_screen.dart';
 import 'package:flutter_application_1/ui/widgets/mine_cell.dart';
-import 'package:flutter_application_1/ui/screens/about.dart';
 
 class MinesweeperScreen extends StatelessWidget 
 {
@@ -10,6 +7,11 @@ class MinesweeperScreen extends StatelessWidget
     @override
   Widget build(BuildContext context) 
   {
+    final args =ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+
+    // Definimos valores por defecto (Fallback) en caso de que lleguen nulos
+    final String difficulty = args?['difficulty'] ?? 'Desconocida'; 
+    final int gridSize = args?['gridSize'] ?? 8;
     return Scaffold
     (
       appBar: AppBar(title: const Text('Buscaminas'),
@@ -104,10 +106,12 @@ class MinesweeperScreen extends StatelessWidget
             ),
               const Divider(height: 1),
               // Área de Juego
-              Expanded
+            Expanded
             ( // Expande el tablero para llenar la pantalla
               child: _gameBoard(),
             ),
+            Text('Dificultad: $difficulty'),
+            Text('Tamaño: $gridSize'),
           ],
         ),
       ),
