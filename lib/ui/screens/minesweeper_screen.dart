@@ -162,6 +162,14 @@ class _MinesweeperScreenState extends State<MinesweeperScreen>
     );
   }
 
+  void _onCellTapped(int index) 
+  {
+    setState(() 
+    {
+      _cells[index].isRevealed = true; // Actualizamos el dato
+    });
+  }
+
   Widget _gameBoard() 
   {
     return Center
@@ -185,7 +193,7 @@ class _MinesweeperScreenState extends State<MinesweeperScreen>
             itemCount: 64, // 8x8 = 64 celdas
             itemBuilder: (context, index) 
             {
-              return MineCell(index: index);
+              return MineCell(index: index, cell: _cells[index], onTap: () => _onCellTapped(index),); // Cada celda es un widget MineCell
             },
           ),
         ),

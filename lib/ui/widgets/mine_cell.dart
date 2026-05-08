@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/models/cell_model.dart';
 
 class MineCell extends StatelessWidget 
 {
   final int index;
+  final CellModel cell;
+  final VoidCallback onTap;
+
   const MineCell
   ({
     Key? key,
-    required this.index, // Parámetro obligatorio en el constructor
+    required this.index,
+    required this.cell, // Recibe el estado de esta celda específica
+    required this.onTap, // Recibe la función que debe ejecutar al ser tocada
   }) : super(key: key);
 
   @override
@@ -14,23 +20,29 @@ class MineCell extends StatelessWidget
   {
     final theme = Theme.of(context);
 
-    return Container
+    return GestureDetector
     (
-      decoration: BoxDecoration
+      onTap: onTap,
+      child: Container
       (
-        color: theme.colorScheme.secondary, //usa el color de fonde del tema
-        border: Border.all(color: theme.colorScheme.outline, width: 1.5),
-      ),
-      child: Center
-      (
-        child: Image.asset
+        decoration: BoxDecoration
         (
-          'assets/icons/Mina.png',
-          width: 64,
-          height: 64,
-          fit: BoxFit.contain,
+          color: theme.colorScheme.secondary, //usa el color de fonde del tema
+          border: Border.all(color: theme.colorScheme.outline, width: 1.5),
         ),
-      )
+        child: Center
+        (
+          child: cell.isRevealed
+          ? Image.asset
+          (
+            'assets/icons/Mina.png',
+            width: 64,
+            height: 64,
+            fit: BoxFit.contain,
+          )
+          : const SizedBox.shrink()
+        )
+      ),
     );
   }
 }
