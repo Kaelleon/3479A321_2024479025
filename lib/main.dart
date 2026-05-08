@@ -4,6 +4,8 @@ import 'package:flutter_application_1/ui/screens/menu_screen.dart';
 import 'package:flutter_application_1/ui/screens/history_screen.dart';
 import 'package:flutter_application_1/ui/screens/about.dart';
 import 'package:logger/logger.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_application_1/models/game_view_model.dart';
 var logger = Logger();
 
 void main() 
@@ -30,7 +32,11 @@ class MyApp extends StatelessWidget
       routes: 
       {
         '/menu': (context) => const MenuScreen(),
-        '/game': (context) => const MinesweeperScreen(),
+        '/game': (context) => ChangeNotifierProvider
+        (
+        create: (context) => GameViewModel(),
+        child: MinesweeperScreen(),
+        ),
         '/history': (context) => const HistoryScreen(),
         '/about': (context) => const AboutScreen(),
       },
@@ -51,7 +57,6 @@ class MyApp extends StatelessWidget
         ),
         useMaterial3: true,
       ),
-      home: const MinesweeperScreen(), // Apuntamos a nuestra nueva pantalla
     );
   }
 }

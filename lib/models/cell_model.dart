@@ -4,6 +4,7 @@ class CellModel
   bool isBomb;
   bool isRevealed;
   bool isFlagged;
+  
   CellModel
   ({
     required this.index,
