@@ -32,16 +32,35 @@ class MineCell extends StatelessWidget
         ),
         child: Center
         (
-          child: cell.isRevealed
-          ? Image.asset
-          (
-            'assets/icons/Mina.png',
-            width: 64,
-            height: 64,
-            fit: BoxFit.contain,
-          )
-          : const SizedBox.shrink()
+          child: _buildCellContent()
         )
+      ),
+    );
+  }
+
+  Widget _buildCellContent() 
+  {
+    if (!cell.isRevealed) 
+    {
+      return const SizedBox.shrink();
+    }
+    if (cell.isBomb) 
+    {
+      return Image.asset
+      (
+        'assets/icons/Mina.png',
+        width: 40, // Ajustamos el tamaño para que no desborde
+        height: 40,
+        fit: BoxFit.contain,
+      );
+    }
+    return Text
+    (
+      '${cell.index}',
+      style: const TextStyle
+      (
+        fontWeight: FontWeight.bold,
+        color: Colors.blueGrey,
       ),
     );
   }

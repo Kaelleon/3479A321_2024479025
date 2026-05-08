@@ -5,11 +5,11 @@ import 'package:logger/logger.dart';
 import 'package:flutter_application_1/models/game_view_model.dart';
 import 'package:provider/provider.dart';
 
+final logger = Logger();
+
 class MinesweeperScreen extends StatelessWidget 
 {
-  MinesweeperScreen({Key? key}) : super(key: key);
-
-  final logger = Logger();
+  const MinesweeperScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) 

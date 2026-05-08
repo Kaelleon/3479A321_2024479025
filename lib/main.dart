@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget
         '/game': (context) => ChangeNotifierProvider
         (
         create: (context) => GameViewModel(),
-        child: MinesweeperScreen(),
+        child: const MinesweeperScreen(),
         ),
         '/history': (context) => const HistoryScreen(),
         '/about': (context) => const AboutScreen(),
