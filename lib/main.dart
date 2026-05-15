@@ -1,15 +1,22 @@
-import 'package:flutter/material.dart';
+import 'package:flutter_application_1/core/services/storage_service.dart';
 import 'package:flutter_application_1/ui/screens/minesweeper_screen.dart';
-import 'package:flutter_application_1/ui/screens/menu_screen.dart';
+import 'package:flutter_application_1/ui/screens/settings_screen.dart';
 import 'package:flutter_application_1/ui/screens/history_screen.dart';
-import 'package:flutter_application_1/ui/screens/about.dart';
-import 'package:logger/logger.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter_application_1/models/game_view_model.dart';
+import 'package:flutter_application_1/ui/screens/menu_screen.dart';
+import 'package:flutter_application_1/ui/screens/about.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
+
 var logger = Logger();
 
-void main() 
+void main() async
 {
+  // OBLIGATORIO: Prepara el puente entre Flutter y Android/iOS
+  WidgetsFlutterBinding.ensureInitialized();
+  await StorageService.init();
+
   logger.d('Iniciando la aplicación de Buscaminas'); // Debug
   logger.i('Iniciando la aplicación de Buscaminas'); // Info
   logger.w('Iniciando la aplicación de Buscaminas'); // Warning
@@ -39,6 +46,7 @@ class MyApp extends StatelessWidget
         ),
         '/history': (context) => const HistoryScreen(),
         '/about': (context) => const AboutScreen(),
+        '/settings' : (context) => const SettingsScreen(),
       },
 
       title: 'Buscamina',

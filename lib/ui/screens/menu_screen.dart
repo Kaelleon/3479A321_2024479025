@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/core/services/storage_service.dart';
 
 class MenuScreen extends StatelessWidget 
 {
@@ -6,6 +7,8 @@ class MenuScreen extends StatelessWidget
   @override
   Widget build(BuildContext context) 
   {
+    var username = StorageService.getUsername();
+    
     return Scaffold
     (
       appBar: AppBar(title: const Text('Menu (Maqueta)')),
@@ -16,6 +19,8 @@ class MenuScreen extends StatelessWidget
           mainAxisAlignment: MainAxisAlignment.center,
           children: 
           [
+            Text('Pantalla de Menú, Bienvenido! $username'),
+            SizedBox(height: 20),
             const Text('Buscamina'),
             ElevatedButton
             (
@@ -27,6 +32,11 @@ class MenuScreen extends StatelessWidget
             (
               onPressed: () => Navigator.pushNamed(context, '/history'),
               child: const Text('Historial'),
+            ),
+            ElevatedButton
+            (
+              onPressed: () => Navigator.pushNamed(context, '/settings'), 
+              child: const Text('ajustes'),
             ),
             ElevatedButton
             (
