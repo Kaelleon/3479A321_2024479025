@@ -4,6 +4,7 @@ class CellModel
   bool isBomb;
   bool isRevealed;
   bool isFlagged;
+  int adjacentMines;
   
   CellModel
   ({
@@ -11,5 +12,6 @@ class CellModel
     this.isBomb = false,
     this.isRevealed = false,
     this.isFlagged = false,
+    this.adjacentMines = 0,
   });
 }
