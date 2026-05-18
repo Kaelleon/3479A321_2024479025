@@ -1,6 +1,7 @@
 import 'package:flutter_application_1/core/services/storage_service.dart';
 import 'package:flutter_application_1/ui/screens/minesweeper_screen.dart';
 import 'package:flutter_application_1/ui/screens/settings_screen.dart';
+import 'package:flutter_application_1/models/settings_view_model.dart';
 import 'package:flutter_application_1/ui/screens/history_screen.dart';
 import 'package:flutter_application_1/models/game_view_model.dart';
 import 'package:flutter_application_1/ui/screens/menu_screen.dart';
@@ -21,7 +22,17 @@ void main() async
   logger.i('Iniciando la aplicación de Buscaminas'); // Info
   logger.w('Iniciando la aplicación de Buscaminas'); // Warning
   logger.e('Iniciando la aplicación de Buscaminas'); // Error
-  runApp(const MyApp());
+  runApp
+  (
+    MultiProvider
+    (
+      providers: 
+      [
+        ChangeNotifierProvider(create: (_) => SettingsViewModel()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget

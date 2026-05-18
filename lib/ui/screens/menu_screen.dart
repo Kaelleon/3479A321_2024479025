@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/services/storage_service.dart';
+import 'package:flutter_application_1/models/settings_view_model.dart';
+import 'package:provider/provider.dart';
 
 class MenuScreen extends StatelessWidget 
 {
@@ -7,7 +9,7 @@ class MenuScreen extends StatelessWidget
   @override
   Widget build(BuildContext context) 
   {
-    var username = StorageService.getUsername();
+    final settings = context.watch<SettingsViewModel>();
     
     return Scaffold
     (
@@ -19,7 +21,7 @@ class MenuScreen extends StatelessWidget
           mainAxisAlignment: MainAxisAlignment.center,
           children: 
           [
-            Text('Pantalla de Menú, Bienvenido! $username'),
+            Text('¡Hola, ${settings.username}!'),
             SizedBox(height: 20),
             const Text('Buscamina'),
             ElevatedButton
@@ -35,8 +37,15 @@ class MenuScreen extends StatelessWidget
             ),
             ElevatedButton
             (
-              onPressed: () => Navigator.pushNamed(context, '/settings'), 
-              child: const Text('ajustes'),
+              onPressed: () async 
+              {
+                await Navigator.pushNamed(context, '/settings');
+                if (context.mounted) 
+                {
+                  context.read<SettingsViewModel>().refreshSettings();
+                }
+              },
+              child: const Text('Ajustes'),
             ),
             ElevatedButton
             (
