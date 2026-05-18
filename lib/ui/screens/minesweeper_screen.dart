@@ -75,7 +75,7 @@ class MinesweeperScreen extends StatelessWidget
                     children: 
                     [
                       Image.asset('assets/images/Tiempo.png'),
-                      Text('349s',
+                      Text('${viewModel.secondsElapsed}s',
                       style: TextStyle
                       (
                         fontSize: 24,
@@ -140,14 +140,14 @@ class MinesweeperScreen extends StatelessWidget
           child: GridView.builder
           (
             physics: const NeverScrollableScrollPhysics(), // Bloquea el scroll
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount
             (
-              crossAxisCount: 8, // 8 columnas
+              crossAxisCount: viewModel.gridSize,
               crossAxisSpacing: 2.0,
               mainAxisSpacing: 2.0,
             ),
             
-            itemCount: 64, // 8x8 = 64 celdas
+            itemCount: viewModel.cells.length, // 8x8 = 64 celdas
             itemBuilder: (context, index) 
             {
               final currentCell = viewModel.cells[index];
