@@ -21,36 +21,80 @@ class MenuScreen extends StatelessWidget
           mainAxisAlignment: MainAxisAlignment.center,
           children: 
           [
-            Text('¡Hola, ${settings.username}!'),
+            const Icon(Icons.grid_on, size: 80, color: Colors.deepPurple),
+            const SizedBox(height:  16),
+            Text
+            (
+              '¡Hola, ${settings.username}!', 
+              style: const TextStyle
+              (
+                fontSize: 28, 
+                fontWeight: FontWeight.bold
+              ),
+            ),
             SizedBox(height: 20),
-            const Text('Buscamina'),
-            ElevatedButton
+
+            Card
             (
-              onPressed: () => Navigator.pushNamed(context, '/game', 
-              arguments: {'difficulty': 'Facil', 'gridSize': 8},),
-              child: const Text('Jugar'),
+              elevation: 4,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              child: Padding
+              (
+                padding: const EdgeInsets.all(8.0),
+                child: Column
+                (
+                  children: 
+                  [
+                    const Text('Configuracion Actual', style: TextStyle(color: Colors.grey)),
+                    const Divider(),
+                    ListTile
+                    (
+                      leading: const Icon(Icons.dashboard, color: Colors.deepPurple),
+                      title: Text('Dificultad: ${settings.difficulty}'),
+                      subtitle: Text('Tablero de ${settings.gridSize}x${settings.gridSize}'),
+                      trailing: IconButton
+                      (
+                        icon: const Icon(Icons.edit),
+                        onPressed: () => Navigator.pushNamed(context, '/settings'),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
-            ElevatedButton
+            const SizedBox(height: 40),
+
+            SizedBox
             (
+              width: double.infinity,
+              height: 50,
+              child: ElevatedButton.icon
+              (
+                icon: const Icon(Icons.play_arrow, size: 28),
+                label: const Text('NUEVA PARTIDA', style:TextStyle(fontSize: 18)),
+                style: ElevatedButton.styleFrom
+                (
+                  backgroundColor: Colors.deepPurple,
+                  foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                ),
+                onPressed: () => Navigator.pushNamed(context, '/game'),
+              ),
+            ),
+            const SizedBox(height: 16),
+
+            TextButton.icon
+            (
+              icon: const Icon(Icons.history),
+              label: const Text('Ver Historial de Partidas'),
               onPressed: () => Navigator.pushNamed(context, '/history'),
-              child: const Text('Historial'),
             ),
-            ElevatedButton
+            
+            TextButton.icon
             (
-              onPressed: () async 
-              {
-                await Navigator.pushNamed(context, '/settings');
-                if (context.mounted) 
-                {
-                  context.read<SettingsViewModel>().refreshSettings();
-                }
-              },
-              child: const Text('Ajustes'),
-            ),
-            ElevatedButton
-            (
+              icon: const Icon(Icons.info),
+              label: const Text('Acerca de'),
               onPressed: () => Navigator.pushNamed(context, '/about'),
-              child: const Text('Acera de'),
             ),
           ],
         )

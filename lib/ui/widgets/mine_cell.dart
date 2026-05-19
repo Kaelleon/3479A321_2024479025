@@ -27,7 +27,11 @@ class MineCell extends StatelessWidget
       (
         decoration: BoxDecoration
         (
-          color: theme.colorScheme.secondary, //usa el color de fonde del tema
+          color:
+          cell.isRevealed
+          ? Colors.grey[100]
+          : theme.colorScheme.secondary, //usa el color de fonde del tema,
+
           border: Border.all(color: theme.colorScheme.outline, width: 1.5),
         ),
         child: Center
@@ -38,30 +42,29 @@ class MineCell extends StatelessWidget
     );
   }
 
-  Widget _buildCellContent() 
-  {
-    if (!cell.isRevealed) 
+ Widget _buildCellContent() 
+ {
+    if (!cell.isRevealed) return const SizedBox.shrink();
+    if (cell.isBomb) return Image.asset('assets/icons/Mina.png', width: 24, height: 24);
+    if (cell.adjacentMines == 0) return const SizedBox.shrink();
+
+    // Paleta de colores clásica
+    Color numberColor;
+    switch (cell.adjacentMines) 
     {
-      return const SizedBox.shrink();
+      case 1: numberColor = Colors.blue; break;
+      case 2: numberColor = Colors.green; break;
+      case 3: numberColor = Colors.red; break;
+      case 4: numberColor = Colors.purple; break;
+      case 5: numberColor = Colors.brown; break;
+      default: numberColor = Colors.black87;
     }
-    if (cell.isBomb) 
-    {
-      return Image.asset
-      (
-        'assets/icons/Mina.png',
-        width: 40, // Ajustamos el tamaño para que no desborde
-        height: 40,
-        fit: BoxFit.contain,
-      );
-    }
+
     return Text
     (
-      '${cell.index}',
-      style: const TextStyle
-      (
-        fontWeight: FontWeight.bold,
-        color: Colors.blueGrey,
-      ),
+      '${cell.adjacentMines}',
+      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color:
+      numberColor),
     );
   }
 }
