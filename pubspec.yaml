@@ -48,6 +48,13 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
+  change_app_package_name: ^1.5.0
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icons/Logo.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -66,6 +73,7 @@ flutter:
     - assets/images/Bandera.png
     - assets/images/Tiempo.png
     - assets/icons/Mina.png
+    - assets/icons/Logo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
