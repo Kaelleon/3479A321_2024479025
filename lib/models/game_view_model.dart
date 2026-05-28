@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../models/cell_model.dart';
 import 'dart:math';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:sensors_plus/sensors_plus.dart';
+import 'package:logger/logger.dart';
 
 class GameViewModel extends ChangeNotifier 
 {
@@ -22,10 +24,15 @@ class GameViewModel extends ChangeNotifier
 
   final AudioPlayer _sfxPlayer = AudioPlayer();
 
+  final Logger _logger = Logger();
+
+  StreamSubscription? _accelerometerSubscription;
+
   GameViewModel({required this.gridSize})
   {
     totalCells = gridSize * gridSize;
     _generateBoard();
+    _initAccelerometer();
   }
 
   void revealCell(int index) 
@@ -123,14 +130,38 @@ class GameViewModel extends ChangeNotifier
   @override
   void dispose() 
   {
+    _timer?.cancel();
+    _accelerometerSubscription?.cancel();
     _sfxPlayer.dispose(); // OBLIGATORIO: Liberar Ram
     super.dispose();
-    _timer?.cancel();
   }
 
   void _playSound(String fileName) async
   {
     await _sfxPlayer.release();
     await _sfxPlayer.play(AssetSource('audio/$fileName'));
+  }
+
+  void _initAccelerometer()
+  {
+    _accelerometerSubscription = accelerometerEventStream().listen((AccelerometerEvent event)
+    {
+      _logger.i(event.x.abs());
+
+      if (_isGameOver && event.x.abs() > 15.0)
+      {
+        _resetGame();
+      }
+    });
+  }
+
+  void _resetGame()
+  {
+    _isGameOver = false;
+    secondsElapsed = 0;
+    _isFirstTap = true;
+    _timer?.cancel();
+    _generateBoard();
+    notifyListeners();
   }
 }
