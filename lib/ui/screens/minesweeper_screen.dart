@@ -5,6 +5,7 @@ import 'package:flutter_application_1/models/cell_model.dart';
 import 'package:logger/logger.dart';
 import 'package:flutter_application_1/models/game_view_model.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 
 final logger = Logger();
 
@@ -46,6 +47,23 @@ class MinesweeperScreen extends StatelessWidget
           onPressed: ()
           {
             Navigator.pushNamed(context, '/menu');
+          },
+        ),
+        if (viewModel.isGameOver)
+        IconButton
+        (
+          icon: const Icon(Icons.share),
+          onPressed: ()
+          {
+            final String mensaje =
+                '¡Acabo de jugar Buscaminas!\n'
+                'Tiempo sobrevivido: ${viewModel.secondsElapsed} segundos.\n'
+                '¡Intenta superarme!';
+
+            SharePlus.instance.share
+            (
+              ShareParams(text: mensaje),
+            );
           },
         ),
       ]
