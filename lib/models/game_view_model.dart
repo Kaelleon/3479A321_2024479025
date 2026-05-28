@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import '../models/cell_model.dart';
 import 'dart:math';
+import 'package:audioplayers/audioplayers.dart';
 
 class GameViewModel extends ChangeNotifier 
 {
@@ -19,6 +20,7 @@ class GameViewModel extends ChangeNotifier
   final int gridSize;
   late int totalCells;
 
+  final AudioPlayer _sfxPlayer = AudioPlayer();
 
   GameViewModel({required this.gridSize})
   {
@@ -40,9 +42,14 @@ class GameViewModel extends ChangeNotifier
     // Si toca una bomba, el juego termina
     if (_cells[index].isBomb) 
     {
+      _playSound('Explosion.mp3'); // SONIDO DE DERROTA
       _isGameOver = true;
       _timer?.cancel();
       _revealAll(); // Función para mostrar todo al mori.
+    }
+    else
+    {
+      _playSound('Tap.mp3'); // SONIDO DE CELDA SEGURA
     }
     notifyListeners();
   }
@@ -116,7 +123,14 @@ class GameViewModel extends ChangeNotifier
   @override
   void dispose() 
   {
-    _timer?.cancel();
+    _sfxPlayer.dispose(); // OBLIGATORIO: Liberar Ram
     super.dispose();
+    _timer?.cancel();
+  }
+
+  void _playSound(String fileName) async
+  {
+    await _sfxPlayer.release();
+    await _sfxPlayer.play(AssetSource('audio/$fileName'));
   }
 }
